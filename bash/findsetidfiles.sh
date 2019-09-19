@@ -12,4 +12,13 @@
 echo "Setuid files:"
 echo "============="
 find / -type f -executable -perm -4000 -ls 2>/dev/null | sort -k 3
+echo "============="
 echo ""
+# Task 1 Find Setgid
+echo "Setgid Files:"
+echo "============="
+find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 3
+echo "============="
+echo ""
+# Task 2 Finding the 10 largest files
+find ~/ -type f -exec ls -al --block-size=M {} + | sort -k 5 -hr | head | awk '{print $5, $3, $9}'
