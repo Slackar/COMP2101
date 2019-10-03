@@ -18,7 +18,7 @@ declare -i bias1=1
 # Tell the user we have started processing
 echo "Rolling..."
 # roll the dice and save the results
-die1=$(( RANDOM % range1 + bias1))
+die1=$(( RANDOM % range1 + bias1 ))
 die2=$(( RANDOM % range1 + bias1 ))
 # sum up the rolls
 sum=$(( die1 + die2 ))
