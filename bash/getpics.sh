@@ -23,6 +23,9 @@ test -f ~/Pictures/pics.zip && unzip -d ~/Pictures -o -q ~/Pictures/pics.zip && 
 # adding the option to unpack the tar file and then delete it
 test -f ~/Pictures/pics.tgz && tar xzf ~/Pictures/pics.tgz -C ~/Pictures/ && rm ~/Pictures/pics.tgz
 
+# this shows how I could have removed the folder pics when extracting
+# test -f ~/Pictures/pics.tgz && tar xzf ~/Pictures/pics.tgz --strip 1 -C ~/Pictures/ && rm ~/Pictures/pics.tgz
+
 # Make a report on what we have in the Pictures directory
 test -d ~/Pictures && cat <<EOF
 Found $(find ~/Pictures -type f|wc -l) files in the Pictures directory.
