@@ -21,12 +21,10 @@ test -f ~/Pictures/pics.tgz || wget -q -O ~/Pictures/pics.tgz http://zonzorp.net
 test -f ~/Pictures/pics.zip && unzip -d ~/Pictures -o -q ~/Pictures/pics.zip && rm ~/Pictures/pics.zip
 
 # adding the option to unpack the tar file and then delete it
-test -f ~/Pictures/pics.tgz && tar xvzf ~/Pictures/pics.tgz --strip=1 -C ~/Pictures/ && rm ~/Pictures/pics.tgz
+test -f ~/Pictures/pics.tgz && tar xzf ~/Pictures/pics.tgz -C ~/Pictures/ && rm ~/Pictures/pics.tgz
 
 # Make a report on what we have in the Pictures directory
 test -d ~/Pictures && cat <<EOF
-
-
 Found $(find ~/Pictures -type f|wc -l) files in the Pictures directory.
 The Pictures directory uses $(du -sh ~/Pictures|awk '{print $1}') space on the disk.
 EOF
