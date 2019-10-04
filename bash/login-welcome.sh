@@ -25,7 +25,7 @@ hostname=$(hostname)
 hello=$(cat <<EOF
 
 Welcome to planet ${hostname^}, "$title ${USER^}!"
-It is $(date +%T) on a $(date +%A) my Lord
+It is $(date +%T) on a $(date +%H:%M %P) my Lord
 
 EOF
 )
