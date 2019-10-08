@@ -21,7 +21,7 @@ test -f ~/Pictures/pics.tgz || wget -q -O ~/Pictures/pics.tgz http://zonzorp.net
 test -f ~/Pictures/pics.zip && unzip -d ~/Pictures -o -q ~/Pictures/pics.zip && rm ~/Pictures/pics.zip
 
 # adding the option to unpack the tar file and then delete it
-test -f ~/Pictures/pics.tgz && tar xzf ~/Pictures/pics.tgz -C ~/Pictures/ && rm ~/Pictures/pics.tgz
+test -f ~/Pictures/pics.tgz && tar -xzf ~/Pictures/pics.tgz -C ~/Pictures/ && rm ~/Pictures/pics.tgz
 
 # this shows how I could have removed the folder pics when extracting
 # test -f ~/Pictures/pics.tgz && tar xzf ~/Pictures/pics.tgz --strip 1 -C ~/Pictures/ && rm ~/Pictures/pics.tgz
