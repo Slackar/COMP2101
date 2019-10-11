@@ -35,7 +35,7 @@ while [ $# -gt 0 ]; do
     debug="yes"
     echo "Debug mode set to $level"
     ;;
-    -d[0,5-9,a-z,A-Z] )
+    -d[0,5-9,a-z,A-Z]* )
     echo "You have entered an invalid Debug mode option"
     exit 2
     ;;
