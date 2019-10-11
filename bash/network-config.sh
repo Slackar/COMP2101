@@ -47,7 +47,7 @@ netName=$(getent networks $netNumb | awk '{print $1}')
 cat <<EOF
 Hostname        : $(hostname)
 LAN Address     : $lanAdd
-LAN Hostname    : $lanHost
+LAN Name        : $lanHost
 External IP     : $extIP
 External Name   : $extName
 Router Address  : $router

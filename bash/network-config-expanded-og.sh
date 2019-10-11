@@ -12,8 +12,8 @@
 # the LAN info in this script uses a hardcoded interface name of "eno1"
 #    - change eno1 to whatever interface you have and want to gather info about in order to test the script
 
-# TASK 1: Dynamically identify the list of interface names for the computer running the script, and use a for loop to
-# generate the report for every interface except loopback
+# TASK 1: Dynamically identify the list of interface names for the computer running the script,
+# and use a for loop to generate the report for every interface except loopback
 
 ################
 # Data Gathering
@@ -46,7 +46,6 @@ Default Router: $default_router_address
 Router Name   : $default_router_name
 External IP   : $external_address
 External Name : $external_name
-
 EOF
 
 #####
@@ -54,7 +53,8 @@ EOF
 #####
 
 # the second part of the output generates a per-interface report
-# the task is to change this from something that runs once using a fixed value for the interface name to
+# the task is to change this from something that runs once using a fixed value for the interface
+# name to
 #   a dynamic list obtained by parsing the interface names out of a network info command like "ip"
 #   and using a loop to run this info gathering section for every interface found
 
@@ -64,22 +64,21 @@ EOF
 #####
 # define the interface being summarized
 interface=$(ls /sys/class/net)
-for val in $interface; do
+
+
+
 # Find an address and hostname for the interface being summarized
 # we are assuming there is only one IPV4 address assigned to this interface
-if [ $val == "lo" ] ; then
-  continue
-fi
-ipv4_address=$(ip a s $val|awk -F '[/ ]+' '/inet /{print $3}')
+ipv4_address=$(ip a s $interface|awk -F '[/ ]+' '/inet /{print $3}')
 ipv4_hostname=$(getent hosts $ipv4_address | awk '{print $2}')
 
 # Identify the network number for this interface and its name if it has one
-network_address=$(ip route list dev $val scope link|cut -d ' ' -f 1 | grep -v '^169.')
+network_address=$(ip route list dev $interface scope link|cut -d ' ' -f 1)
 network_number=$(cut -d / -f 1 <<<"$network_address")
 network_name=$(getent networks $network_number|awk '{print $1}')
 
 cat <<EOF
-Interface $val:
+Interface $interface:
 ===============
 Address         : $ipv4_address
 Name            : $ipv4_hostname
@@ -87,8 +86,6 @@ Network Address : $network_address
 Network Name    : $network_name
 
 EOF
-
-done
 #####
 # End of per-interface report
 #####
