@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script demonstrates how the shift command works
-
+declare -a stored
 debug="no"
 verb="no"
 # loop through the command line arguments
@@ -35,13 +35,12 @@ while [ $# -gt 0 ]; do
     debug="yes"
     echo "Debug mode set to $level"
     ;;
-    -d[0,5-9,a-z,A-Z]* )
-    echo "You have entered an invalid Debug mode option"
+    -d* )
+    echo "You have entered an invalid Debug mode option" >&2
     exit 2
     ;;
     * )
-    export stored=$1
-    echo "Command stored"
+    stored+=("$1")
     ;;
   esac
 
@@ -54,3 +53,5 @@ while [ $# -gt 0 ]; do
   # go back to the top of the loop to see if anything is left to work on
 done
 echo "Done"
+echo "Stored Data: " ${stored[@]}
+echo "You have ${#stored[@]} pieces of data for later processing"
