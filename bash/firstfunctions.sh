@@ -8,13 +8,15 @@
 #       give the option for them on the command line when running the script. After the command line is
 #       processed, the script should print out 2 lines to indicate if the verbose and debug options are
 #       set to yes or no.
-
+pointZero=$(basename $0)
+degug="off"
+verbose="off"
 ##############
 # FUNCTIONS
 ##############
 # Define functions for error messages and displaying command line help.
 function displayusage {
-  echo "Usage:$0 [-h | --help]"
+  echo "Usage:$pointZero [-h | --help] [-d] [-v]"
 }
 function errormessage {
   echo "$@" >&2
@@ -30,6 +32,12 @@ while [ $# -gt 0 ]; do
       displayusage
       exit 0
       ;;
+    -v )
+      verbose="on"
+      ;;
+    -d )
+      debug="on"
+      ;;
     *)
       errormessage "I don't know what '$1' is. Sorry."
       errormessage "$(displayusage)"
@@ -38,3 +46,5 @@ while [ $# -gt 0 ]; do
   esac
   shift
 done
+echo "Debug status set to: $debug"
+echo "Verbose status set to: $verbose"
