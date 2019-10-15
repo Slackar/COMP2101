@@ -14,6 +14,8 @@ programName="$(basename $0)" # used by error_functions.sh
 sleepTime=1 # delay used by sleeptime
 numberOfSleeps=10 # how many sleeps to wait for before quitting for inactivity
 
+#trap reset SIGINT
+#trap secret SIGQUIT
 #### Functions
 
 # This function will send an error message to stderr
@@ -39,8 +41,22 @@ Default waittime is 1, waitcount is 10
 EOF
 }
 
-#### Main Program
+function reset1 {
+       sleepCount=10
+      echo "
+You cannot interrupt this process. Resetting to 10"
+}
 
+function secret {
+      echo "
+You found the way out"
+      exit
+}
+
+trap reset1 SIGINT
+trap secret SIGQUIT
+
+#### Main Program
 # Process command line parameters
 while [ $# -gt 0 ]; do
     case $1 in
@@ -66,6 +82,7 @@ done
 if [ ! $numberOfSleeps -gt 0 ]; then
     error-exit "$numberOfSleeps is not a valid count of sleeps to wait for signals"
 fi
+
 
 if [ ! $sleepTime -gt 0 ]; then
     error-exit "$sleepTime is not a valid time to sleep while waiting for signals"
