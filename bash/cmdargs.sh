@@ -8,7 +8,7 @@ while [ $# -gt 0 ]; do
   # tell the user how many things are left on the command line
   echo "There are $# things left to process on the command line."
   # display whatever is in $1
-  ec/ho "\$1 has '$1' in it."
+  echo "\$1 has '$1' in it."
 
 # TASK 1: replace the echo command that just says processing with a case statement that
 #             recognizes the following command line options and tells the user if
