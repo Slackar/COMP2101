@@ -71,6 +71,7 @@ if [ $val == "lo" ] ; then
   continue
 fi
 ipv4_address=$(ip a s $val|awk -F '[/ ]+' '/inet /{print $3}')
+ipv4_hostname=$(getent hosts $ipv4_address | awk '{print $2}')
 
 
 
