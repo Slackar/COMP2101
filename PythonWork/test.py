@@ -2,14 +2,14 @@ from datetime import datetime
 
 def testDate():
     while True:
-        user_input = input('Enter the date in mm/dd/yyyy format: ')
+        inputDate = input('Enter the date in mm/dd/yyyy format: ')
         try:
-            datetime.strptime(user_input, '%m/%d/%Y')
-            print('The date {} is valid.'.format(user_input))
-            return user_input
+            datetime.strptime(inputDate, '%m/%d/%Y')
+            print('The date {} is valid.'.format(inputDate))
+            return inputDate
             break
         except ValueError:
-            print('The date {} is invalid'.format(user_input))
+            print('The date {} is invalid'.format(inputDate))
 
 
 dOb = testDate()
